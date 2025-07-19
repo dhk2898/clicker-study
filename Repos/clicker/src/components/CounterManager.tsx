@@ -28,6 +28,7 @@ const CounterManager = () => {
   const initialState: State = {autoTicking: false, counters: []};
   const [state, dispatch] = useReducer(counterReducer, initialState);
   const intervalRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+  const total = state.counters.reduce((sum, c) => sum + c.value, 0)
     
   //#region event handlers
     function handleAddCounter(){
@@ -87,12 +88,18 @@ const CounterManager = () => {
     return () => clearInterval(intervalRef.current);}, 
     [state.autoTicking]);
 
-    
 
   return(
       <div className = "container">
+        <div className = "headers">
           <h1>Clicker</h1>
-          <h2 className = "total">Total:{state.counters.reduce((sum, c) => sum + c.value, 0)}</h2>
+          <h1>Clicker</h1>
+        </div>
+        <div className = "headers">
+          <h2>Total: {total}</h2>
+          <h2>Total: {total}</h2>
+        </div>
+
           <div className = "buttonGroup">
             <button onClick ={() => handleAddCounter()}>Add Counter</button>
             <button onClick ={() => handleRemoveCounter()}>Subtract Counter</button>
