@@ -3,9 +3,9 @@ import './App.css';
 
 const App = () => {
   return (
-    <>
+    <div className = "darkBackground">
       <CounterManager />
-    </>
+    </div>
   );
 }
 

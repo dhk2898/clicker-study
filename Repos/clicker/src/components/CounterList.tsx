@@ -1,14 +1,24 @@
 import Counter from './Counter.tsx'
 
-const CounterList = ({counters, onCounterChange}) => {
+type CounterData = {
+  id: number;
+  value: number;
+};
+
+type CounterListProps = {
+  counters: CounterData[];
+  onCounterChange: (id: number, amount: number) => void;
+};
+
+const CounterList = ({counters, onCounterChange}: CounterListProps) => {
     return(
-        <ul>
+        <div className = "counterGrid">
             {counters.map(counter => (
-                <li key = {counter.id}>
+                <div key = {counter.id}>
                     <Counter onCounterChange = {onCounterChange} id = {counter.id} value = {counter.value}/>
-                </li>
+                </div>
             ))}
-        </ul>
+        </div>
     );
 }
 
